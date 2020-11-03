@@ -6,6 +6,14 @@ void ft_putchar(char b) {
 	_write(1, &b, 1);
 }
 
+int step(int e) {
+	int io;
+	for (io = 1; e != 0; e--) {
+		io *= 10;
+	}
+	return io;
+}
+
 void ft_print_alphabet() {
 	char b = 'a';
 	for (; b <= 'z'; b++) {
@@ -38,22 +46,21 @@ void ft_is_negative(int n) {
 
 void ft_putnbr(int nb) {
 	int b ;
-	char s;
+	char sims;
 	int i;
 	int e;
 	int end;
 	b = nb;
-	e = 10;
-	for (; b / e != 0; e *= 10);
-
-	e /= 10;
-
-	for (; e != 0; e /= 10 ) {
-		i = nb / e;
+	e = 1;
+	for (; b >= 10; e++, b /= 10);
+	e--;
+	for (; e >= 0; e-- ) {
+		i = nb / step(e);
 		end = i % 10;
-		s = 48 + end;
-		ft_putchar(s);
+		sims = 48 + end;
+		ft_putchar(sims);
 	}
+	printf("\n");
 
 	/*while (nb != 0) {
 		i = nb % 10;
@@ -62,11 +69,10 @@ void ft_putnbr(int nb) {
 		nb /= 10;
 	}*/
 }
-//for (int i = 10; nb != 0; i *= 10);
 int main() {
 	/*ft_print_alphabet();
 	ft_print_reverse_alphabet();
 	ft_print_numbers();
 	ft_is_negative(-2);*/
-	ft_putnbr(1234567890);
+	ft_putnbr(-12345);
 }
